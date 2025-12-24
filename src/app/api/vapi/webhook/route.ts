@@ -1,9 +1,64 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/supabase/server";
+import crypto from "crypto";
+
+/**
+ * Vérifie la signature HMAC du webhook VAPI
+ */
+function verifyWebhookSignature(
+  body: string,
+  signature: string | null,
+  timestamp: string | null
+): boolean {
+  if (!signature || !timestamp) {
+    return false;
+  }
+
+  const secret = process.env.VAPI_WEBHOOK_SECRET;
+  if (!secret) {
+    console.error("VAPI_WEBHOOK_SECRET not configured");
+    return false;
+  }
+
+  // Vérifier que le timestamp n'est pas trop ancien (max 5 minutes)
+  const timestampMs = parseInt(timestamp);
+  if (isNaN(timestampMs) || Math.abs(Date.now() - timestampMs) > 300000) {
+    console.error("Webhook timestamp too old or invalid");
+    return false;
+  }
+
+  // Calculer la signature attendue
+  const expectedSignature = crypto
+    .createHmac("sha256", secret)
+    .update(timestamp + body)
+    .digest("hex");
+
+  // Comparaison sécurisée pour éviter timing attacks
+  return crypto.timingSafeEqual(
+    Buffer.from(signature),
+    Buffer.from(expectedSignature)
+  );
+}
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json();
+    // 1. Récupérer le body en texte pour vérification signature
+    const bodyText = await request.text();
+    
+    // 2. Vérifier la signature HMAC
+    const signature = request.headers.get("x-vapi-signature");
+    const timestamp = request.headers.get("x-vapi-timestamp");
+    
+    if (!verifyWebhookSignature(bodyText, signature, timestamp)) {
+      console.error("Invalid webhook signature");
+      return NextResponse.json(
+        { error: "Invalid signature" },
+        { status: 401 }
+      );
+    }
+
+    // 3. Parser le body après vérification
+    const body = JSON.parse(bodyText);
     const { type, call } = body;
 
     const supabase = await createAdminClient();
