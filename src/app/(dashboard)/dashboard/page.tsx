@@ -1,7 +1,7 @@
 "use client";
 
 import { Header } from "@/components/layout";
-import { StatsCards, CallsChart, RecentCalls } from "@/components/dashboard";
+import { StatsCards, CallsChart, RecentCalls, LiveCallsMonitor } from "@/components/dashboard";
 import { useUser, useStats, useCalls } from "@/hooks";
 import { Spinner } from "@/components/ui";
 
@@ -22,7 +22,7 @@ export default function DashboardPage() {
     <>
       <Header title="Tableau de bord" description="Vue d'ensemble de votre activité" />
       <div className="p-6 space-y-6">
-        {stats && (
+        {stats && organization && (
           <>
             <StatsCards 
               totalCalls={stats.totalCalls} 
@@ -30,6 +30,10 @@ export default function DashboardPage() {
               successRate={stats.successRate} 
               appointmentsToday={stats.appointmentsToday} 
             />
+            
+            {/* Moniteur d'appels en temps réel */}
+            <LiveCallsMonitor organizationId={organization.id} />
+            
             <div className="grid lg:grid-cols-2 gap-6">
               <CallsChart data={stats.callsByDay} />
               {!callsLoading && <RecentCalls calls={calls} />}

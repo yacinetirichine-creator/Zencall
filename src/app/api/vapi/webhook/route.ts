@@ -59,15 +59,18 @@ export async function POST(request: NextRequest) {
 
     // 3. Parser le body après vérification
     const body = JSON.parse(bodyText);
-    const { type, call } = body;
+    const { type, call, message } = body;
 
     const supabase = await createAdminClient();
 
-    if (type === "call-started") {
+    // === ÉVÉNEMENT: Appel démarré ===
+    if (type === "call-started" || type === "call.started") {
       await supabase.from("call_logs").insert({
         vapi_call_id: call.id,
         organization_id: call.metadata?.organization_id,
         assistant_id: call.metadata?.assistant_id,
+        contact_id: call.metadata?.contact_id,
+        campaign_id: call.metadata?.campaign_id,
         direction: call.type === "inboundPhoneCall" ? "inbound" : "outbound",
         caller_number: call.customer?.number,
         status: "in_progress",
@@ -76,28 +79,132 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    if (type === "call-ended") {
+    // === ÉVÉNEMENT: Appel terminé ===
+    if (type === "call-ended" || type === "call.ended") {
       const { data: existingCall } = await supabase
         .from("call_logs")
-        .select("id")
+        .select("id, campaign_id")
         .eq("vapi_call_id", call.id)
         .single();
 
       if (existingCall) {
+        const status = determineCallStatus(call.endedReason);
+        
         await supabase.from("call_logs").update({
-          status: call.endedReason === "customer-ended-call" ? "completed" : "failed",
+          status,
           duration_seconds: Math.round(call.duration || 0),
           transcript: call.transcript,
           summary: call.summary,
           recording_url: call.recordingUrl,
           cost: call.cost,
+          sentiment: analyzeSentiment(call.summary, call.transcript),
           ended_at: new Date().toISOString(),
         }).eq("id", existingCall.id);
+
+        // Mettre à jour le contact de campagne si applicable
+        if (existingCall.campaign_id) {
+          await supabase
+            .from("campaign_contacts")
+            .update({
+              status: status === "completed" ? "completed" : "failed",
+              result: call.endedReason,
+              completed_at: new Date().toISOString(),
+            })
+            .eq("call_log_id", existingCall.id);
+
+          // Mettre à jour les stats de la campagne
+          const { CampaignService } = await import("@/lib/vapi/campaigns");
+          await CampaignService.updateCampaignStats(existingCall.campaign_id);
+        }
+      }
+    }
+
+    // === ÉVÉNEMENT: Message reçu (transcription en temps réel) ===
+    if (type === "transcript" || type === "message") {
+      await supabase.from("call_logs").update({
+        transcript: message?.transcript || body.transcript,
+      }).eq("vapi_call_id", call?.id || body.call?.id);
+    }
+
+    // === ÉVÉNEMENT: Transfert d'appel ===
+    if (type === "call-forwarding-started" || type === "transfer") {
+      await supabase.from("call_logs").update({
+        status: "transferred",
+        metadata: { transfer_number: body.phoneNumber },
+      }).eq("vapi_call_id", call.id);
+    }
+
+    // === ÉVÉNEMENT: Rendez-vous créé ===
+    if (type === "appointment-booked" || type === "function-call") {
+      if (body.functionName === "book_appointment" && body.result) {
+        const appointmentData = JSON.parse(body.result);
+        
+        const { data: callLog } = await supabase
+          .from("call_logs")
+          .select("organization_id, contact_id")
+          .eq("vapi_call_id", call.id)
+          .single();
+
+        if (callLog) {
+          await supabase.from("appointments").insert({
+            organization_id: callLog.organization_id,
+            contact_id: callLog.contact_id,
+            call_log_id: call.id,
+            title: appointmentData.title || "Rendez-vous",
+            scheduled_at: appointmentData.date,
+            duration_minutes: appointmentData.duration || 30,
+            status: "scheduled",
+            notes: appointmentData.notes,
+          });
+        }
       }
     }
 
     return NextResponse.json({ success: true });
   } catch (error) {
+    console.error("Webhook error:", error);
+    return NextResponse.json(
+      { error: "Internal server error" },
+      { status: 500 }
+    );
+  }
+}
+
+/**
+ * Détermine le statut de l'appel selon la raison de fin
+ */
+function determineCallStatus(endedReason: string): string {
+  const statusMap: Record<string, string> = {
+    "customer-ended-call": "completed",
+    "assistant-ended-call": "completed",
+    "customer-did-not-answer": "missed",
+    "customer-busy": "missed",
+    "assistant-forwarded-call": "transferred",
+    "voicemail": "missed",
+    "error": "failed",
+  };
+
+  return statusMap[endedReason] || "completed";
+}
+
+/**
+ * Analyse le sentiment de l'appel
+ */
+function analyzeSentiment(summary?: string, transcript?: string): string {
+  if (!summary && !transcript) return "neutral";
+
+  const text = (summary + " " + transcript).toLowerCase();
+  
+  const positiveWords = ["merci", "parfait", "excellent", "satisfait", "content", "bien"];
+  const negativeWords = ["problème", "mécontent", "pas content", "mauvais", "déçu"];
+
+  const positiveCount = positiveWords.filter((word) => text.includes(word)).length;
+  const negativeCount = negativeWords.filter((word) => text.includes(word)).length;
+
+  if (positiveCount > negativeCount) return "positive";
+  if (negativeCount > positiveCount) return "negative";
+  return "neutral";
+}
     console.error("Webhook error:", error);
     return NextResponse.json({ error: "Webhook processing failed" }, { status: 500 });
   }
