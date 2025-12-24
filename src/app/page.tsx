@@ -1,98 +1,132 @@
+"use client";
+
 import Link from "next/link";
-import { Phone, Bot, Calendar, BarChart3, ArrowRight, Check, Star } from "lucide-react";
+import { Phone, ArrowRight, Star, Menu, X } from "lucide-react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Hero3D } from "@/components/landing/hero-3d";
+import { AudioIntro } from "@/components/landing/audio-intro";
+import { PricingSection } from "@/components/landing/pricing-section";
 
 export default function HomePage() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-zencall-coral-50 via-white to-zencall-blue-50">
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-zencall-coral-200 to-zencall-coral-300 flex items-center justify-center">
-              <Phone className="w-4 h-4 text-white" />
+    <div className="min-h-screen bg-white selection:bg-zencall-coral-100 selection:text-zencall-coral-900 font-sans">
+      <AudioIntro />
+      
+      {/* Navbar */}
+      <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-xl border-b border-gray-100/50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-20">
+            <div className="flex items-center gap-2">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-zencall-coral-400 to-zencall-coral-600 flex items-center justify-center shadow-lg shadow-zencall-coral-200/50">
+                <Phone className="w-5 h-5 text-white" />
+              </div>
+              <span className="font-display font-bold text-2xl text-gray-900 tracking-tight">Zencall</span>
             </div>
-            <span className="font-display font-bold text-xl text-gray-800">Zencall</span>
-          </div>
-          <div className="flex items-center gap-3">
-            <Link href="/login" className="text-sm text-gray-600 hover:text-gray-800">Connexion</Link>
-            <Link href="/register" className="bg-zencall-coral-200 text-gray-800 px-4 py-2 rounded-xl text-sm font-medium hover:bg-zencall-coral-300">Essai gratuit</Link>
+            
+            <nav className="hidden md:flex items-center gap-8">
+              <Link href="#features" className="text-sm font-medium text-gray-600 hover:text-zencall-coral-600 transition-colors">Fonctionnalités</Link>
+              <Link href="#pricing" className="text-sm font-medium text-gray-600 hover:text-zencall-coral-600 transition-colors">Tarifs</Link>
+              <Link href="/login" className="text-sm font-medium text-gray-900 hover:text-zencall-coral-600 transition-colors">Connexion</Link>
+              <Link href="/register" className="bg-gray-900 text-white px-5 py-2.5 rounded-xl text-sm font-medium hover:bg-gray-800 transition-all hover:shadow-lg hover:-translate-y-0.5">
+                Essai gratuit
+              </Link>
+            </nav>
+
+            <button className="md:hidden p-2" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+              {isMenuOpen ? <X /> : <Menu />}
+            </button>
           </div>
         </div>
       </header>
 
-      <section className="pt-32 pb-20 px-4 text-center">
-        <div className="max-w-4xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-zencall-coral-100 text-zencall-coral-600 text-sm font-medium mb-6">
-            <Star className="w-4 h-4" /> Nouveau : IA multilingue
-          </div>
-          <h1 className="text-5xl md:text-6xl font-display font-bold text-gray-900 mb-6">
-            Assistant téléphonique<br /><span className="text-zencall-coral-500">propulsé par l'IA</span>
-          </h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-10">
-            Automatisez vos appels avec une IA conversationnelle naturelle. Astreinte 24/7, prise de RDV, information client.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link href="/register" className="bg-zencall-coral-200 text-gray-800 px-8 py-3 rounded-xl text-lg font-medium hover:bg-zencall-coral-300 inline-flex items-center gap-2">
-              Commencer gratuitement <ArrowRight className="w-5 h-5" />
-            </Link>
-          </div>
-          <p className="text-sm text-gray-500 mt-4">14 jours d'essai gratuit • Sans carte bancaire</p>
-        </div>
-      </section>
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="fixed inset-0 z-40 bg-white pt-24 px-6 md:hidden"
+          >
+            <div className="flex flex-col gap-6 text-lg font-medium">
+              <Link href="#features" onClick={() => setIsMenuOpen(false)}>Fonctionnalités</Link>
+              <Link href="#pricing" onClick={() => setIsMenuOpen(false)}>Tarifs</Link>
+              <Link href="/login" onClick={() => setIsMenuOpen(false)}>Connexion</Link>
+              <Link href="/register" onClick={() => setIsMenuOpen(false)} className="text-zencall-coral-600">S'inscrire</Link>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-      <section className="py-20 px-4 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl font-display font-bold text-center text-gray-900 mb-12">Fonctionnalités</h2>
-          <div className="grid md:grid-cols-4 gap-6">
-            {[
-              { icon: Bot, title: "Assistant IA", desc: "Conversations naturelles multilingues" },
-              { icon: Phone, title: "Astreinte 24/7", desc: "Ne manquez plus aucun appel" },
-              { icon: Calendar, title: "Prise de RDV", desc: "Synchronisation calendrier" },
-              { icon: BarChart3, title: "Analytics", desc: "Tableau de bord complet" },
-            ].map((f, i) => (
-              <div key={i} className="bg-white rounded-2xl shadow-soft border border-gray-100 p-6 text-center">
-                <div className="w-12 h-12 rounded-xl bg-zencall-coral-100 flex items-center justify-center mx-auto mb-4">
-                  <f.icon className="w-6 h-6 text-zencall-coral-600" />
-                </div>
-                <h3 className="font-semibold text-gray-800 mb-2">{f.title}</h3>
-                <p className="text-sm text-gray-600">{f.desc}</p>
+      {/* Hero Section */}
+      <section className="pt-32 pb-20 px-4 overflow-hidden">
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+          <motion.div 
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-left"
+          >
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-zencall-coral-50 border border-zencall-coral-100 text-zencall-coral-600 text-sm font-medium mb-8 animate-fade-in-up">
+              <Star className="w-4 h-4 fill-current" /> 
+              <span>Nouvelle IA Générative 2.0</span>
+            </div>
+            <h1 className="text-5xl md:text-7xl font-display font-bold text-gray-900 mb-8 leading-[1.1]">
+              Votre standard <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-zencall-coral-500 to-zencall-blue-500">
+                intelligent & humain
+              </span>
+            </h1>
+            <p className="text-xl text-gray-600 mb-10 leading-relaxed max-w-lg">
+              Ne manquez plus aucun appel. Notre IA répond, qualifie et prend vos rendez-vous 24/7 avec une voix ultra-réaliste.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Link href="/register" className="bg-zencall-coral-500 text-white px-8 py-4 rounded-2xl text-lg font-semibold hover:bg-zencall-coral-600 transition-all shadow-xl shadow-zencall-coral-200 hover:-translate-y-1 flex items-center justify-center gap-2">
+                Commencer maintenant <ArrowRight className="w-5 h-5" />
+              </Link>
+              <Link href="#demo" className="bg-white text-gray-900 border border-gray-200 px-8 py-4 rounded-2xl text-lg font-semibold hover:bg-gray-50 transition-all flex items-center justify-center">
+                Écouter une démo
+              </Link>
+            </div>
+            <div className="mt-8 flex items-center gap-4 text-sm text-gray-500">
+              <div className="flex -space-x-2">
+                {[1,2,3,4].map(i => (
+                  <div key={i} className="w-8 h-8 rounded-full bg-gray-200 border-2 border-white" />
+                ))}
               </div>
-            ))}
+              <p>Déjà adopté par +500 entreprises</p>
+            </div>
+          </motion.div>
+          
+          <div className="relative lg:h-[600px] flex items-center justify-center">
+            <Hero3D />
           </div>
         </div>
       </section>
 
-      <section className="py-20 px-4">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl font-display font-bold text-center text-gray-900 mb-12">Tarifs simples</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              { name: "Starter", price: "49", mins: "100 min", features: ["1 assistant", "1 numéro", "Support email"] },
-              { name: "Pro", price: "149", mins: "500 min", features: ["3 assistants", "2 numéros", "API REST"], popular: true },
-              { name: "Business", price: "299", mins: "1 500 min", features: ["10 assistants", "5 numéros", "Campagnes"] },
-            ].map((plan, i) => (
-              <div key={i} className={`bg-white rounded-2xl shadow-soft border p-8 ${plan.popular ? 'border-zencall-coral-300 ring-2 ring-zencall-coral-200' : 'border-gray-100'}`}>
-                {plan.popular && <span className="bg-zencall-coral-100 text-zencall-coral-600 text-xs font-medium px-2.5 py-0.5 rounded-full">Populaire</span>}
-                <h3 className="text-xl font-semibold text-gray-800 mt-2">{plan.name}</h3>
-                <div className="my-4"><span className="text-4xl font-bold">{plan.price}€</span><span className="text-gray-500">/mois</span></div>
-                <p className="text-sm text-gray-600 mb-6">{plan.mins} incluses</p>
-                <ul className="space-y-2 mb-8">
-                  {plan.features.map((f, j) => (
-                    <li key={j} className="flex items-center gap-2 text-sm text-gray-600"><Check className="w-4 h-4 text-zencall-mint-500" />{f}</li>
-                  ))}
-                </ul>
-                <Link href="/register" className={`block w-full text-center py-2.5 rounded-xl font-medium ${plan.popular ? 'bg-zencall-coral-200 text-gray-800 hover:bg-zencall-coral-300' : 'border-2 border-gray-200 text-gray-700 hover:border-zencall-coral-200'}`}>
-                  Commencer
-                </Link>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Pricing Section */}
+      <div id="pricing">
+        <PricingSection />
+      </div>
 
-      <footer className="py-12 px-4 bg-gray-900 text-white">
+      {/* Footer */}
+      <footer className="py-12 px-4 border-t border-gray-100 bg-gray-50">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-2"><Phone className="w-5 h-5 text-zencall-coral-300" /><span className="font-bold">Zencall</span></div>
-          <p className="text-sm text-gray-400">© 2024 Zencall. Tous droits réservés.</p>
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 rounded-lg bg-gray-900 flex items-center justify-center">
+              <Phone className="w-4 h-4 text-white" />
+            </div>
+            <span className="font-bold text-gray-900">Zencall</span>
+          </div>
+          <div className="flex gap-8 text-sm text-gray-600">
+            <Link href="/legal/privacy">Confidentialité</Link>
+            <Link href="/legal/terms">CGV</Link>
+            <Link href="mailto:contact@zencall.com">Contact</Link>
+          </div>
+          <p className="text-sm text-gray-400">© 2024 Zencall Inc.</p>
         </div>
       </footer>
     </div>
