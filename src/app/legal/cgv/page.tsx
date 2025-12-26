@@ -177,7 +177,7 @@ export default function CGVPage() {
               </p>
               <ul className="list-disc pl-6 mb-4 space-y-1">
                 <li>Carte bancaire (Visa, Mastercard, American Express)</li>
-                <li>Virement SEPA (pour forfaits > 500 €/mois, sur demande)</li>
+                <li>Virement SEPA (pour forfaits {'>'} 500 €/mois, sur demande)</li>
               </ul>
 
               <p className="mb-4">
@@ -313,8 +313,8 @@ export default function CGVPage() {
 
               <h3 className="font-bold text-gray-900 mt-4 mb-2">6.3 Résiliation</h3>
               <p className="mb-4">
-                Le Client peut résilier son abonnement à tout moment depuis son espace client (section Facturation > 
-                Gérer l'abonnement > Résilier). La résiliation prend effet à la fin de la période en cours. 
+                Le Client peut résilier son abonnement à tout moment depuis son espace client (section Facturation {'>'}
+                Gérer l'abonnement {'>'} Résilier). La résiliation prend effet à la fin de la période en cours. 
                 Aucun remboursement prorata temporis n'est effectué.
               </p>
 
@@ -396,7 +396,7 @@ export default function CGVPage() {
               </p>
 
               <p className="mb-4">
-                En cas de force majeure > 30 jours consécutifs, résiliation possible par l'une ou l'autre partie, 
+                En cas de force majeure {'>'} 30 jours consécutifs, résiliation possible par l'une ou l'autre partie, 
                 sans indemnité, avec remboursement prorata temporis de la période non utilisée.
               </p>
             </section>
