@@ -9,6 +9,8 @@ export const LOCALES = [
   "pt", // Português
   "ru", // Русский
   "ur", // اردو
+  "de", // Deutsch
+  "nl", // Nederlands
 ] as const;
 
 export type Locale = (typeof LOCALES)[number];
@@ -28,4 +30,6 @@ export const LOCALE_LABELS: Record<Locale, string> = {
   pt: "Português",
   ru: "Русский",
   ur: "اردو",
+  de: "Deutsch",
+  nl: "Nederlands",
 };
