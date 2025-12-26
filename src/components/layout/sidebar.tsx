@@ -6,28 +6,31 @@ import { cn } from "@/lib/utils";
 import { LayoutDashboard, Bot, Phone, Calendar, Megaphone, Users, Settings, CreditCard, Plug, ChevronLeft, LogOut } from "lucide-react";
 import { useUser } from "@/hooks";
 import { Avatar } from "@/components/ui";
-
-const navItems = [
-  { label: "Tableau de bord", href: "/dashboard", icon: LayoutDashboard },
-  { label: "Assistants", href: "/dashboard/assistants", icon: Bot },
-  { label: "Appels", href: "/dashboard/calls", icon: Phone },
-  { label: "Rendez-vous", href: "/dashboard/appointments", icon: Calendar },
-  { label: "Campagnes", href: "/dashboard/campaigns", icon: Megaphone },
-  { label: "Contacts", href: "/dashboard/contacts", icon: Users },
-];
-
-const bottomItems = [
-  { label: "Intégrations", href: "/dashboard/integrations", icon: Plug },
-  { label: "Équipe", href: "/dashboard/team", icon: Users },
-  { label: "Facturation", href: "/dashboard/billing", icon: CreditCard },
-  { label: "Paramètres", href: "/dashboard/settings", icon: Settings },
-];
+import { useI18n } from "@/i18n/provider";
+import { LanguageSwitcher } from "./language-switcher";
 
 interface SidebarProps { collapsed?: boolean; onToggle?: () => void }
 
 export function Sidebar({ collapsed = false, onToggle }: SidebarProps) {
   const pathname = usePathname();
   const { profile, organization, signOut } = useUser();
+  const { t } = useI18n();
+
+  const navItems = [
+    { label: t("dashboardNav.dashboard"), href: "/dashboard", icon: LayoutDashboard },
+    { label: t("dashboardNav.assistants"), href: "/dashboard/assistants", icon: Bot },
+    { label: t("dashboardNav.calls"), href: "/dashboard/calls", icon: Phone },
+    { label: t("dashboardNav.appointments"), href: "/dashboard/appointments", icon: Calendar },
+    { label: t("dashboardNav.campaigns"), href: "/dashboard/campaigns", icon: Megaphone },
+    { label: t("dashboardNav.contacts"), href: "/dashboard/contacts", icon: Users },
+  ];
+
+  const bottomItems = [
+    { label: t("dashboardNav.integrations"), href: "/dashboard/integrations", icon: Plug },
+    { label: t("dashboardNav.team"), href: "/dashboard/team", icon: Users },
+    { label: t("dashboardNav.billing"), href: "/dashboard/billing", icon: CreditCard },
+    { label: t("dashboardNav.settings"), href: "/dashboard/settings", icon: Settings },
+  ];
 
   return (
     <aside className={cn("fixed left-0 top-0 h-screen bg-white border-r border-gray-100 flex flex-col transition-all z-40", collapsed ? "w-16" : "w-64")}>
@@ -47,7 +50,7 @@ export function Sidebar({ collapsed = false, onToggle }: SidebarProps) {
 
       {!collapsed && organization && (
         <div className="px-4 py-3 border-b border-gray-100">
-          <p className="text-xs text-gray-500">Organisation</p>
+          <p className="text-xs text-gray-500">{t("common.organization")}</p>
           <p className="text-sm font-medium text-gray-800 truncate">{organization.name}</p>
         </div>
       )}
@@ -73,13 +76,21 @@ export function Sidebar({ collapsed = false, onToggle }: SidebarProps) {
         ))}
       </div>
 
+      {!collapsed && (
+        <div className="px-3 pb-4 border-t border-gray-100">
+          <div className="pt-4">
+            <LanguageSwitcher showLabel />
+          </div>
+        </div>
+      )}
+
       <div className="px-3 py-4 border-t border-gray-100">
         <div className={cn("flex items-center gap-3", collapsed ? "justify-center" : "px-2")}>
           <Avatar src={profile?.avatar_url} fallback={profile?.full_name || profile?.email} size="sm" />
           {!collapsed && (
             <>
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium text-gray-800 truncate">{profile?.full_name || "Utilisateur"}</p>
+                <p className="text-sm font-medium text-gray-800 truncate">{profile?.full_name || t("common.user")}</p>
                 <p className="text-xs text-gray-500 truncate">{profile?.email}</p>
               </div>
               <button onClick={signOut} className="p-1.5 rounded-lg text-gray-400 hover:text-gray-600 hover:bg-gray-100">

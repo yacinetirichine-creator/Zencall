@@ -16,8 +16,8 @@ export default function GDPRPage() {
     if (!profile?.id) return;
     
     const fetchRequests = async () => {
-      const { data } = await supabase
-        .from("gdpr_requests")
+      const gdprRequests = (supabase as any).from("gdpr_requests");
+      const { data } = await gdprRequests
         .select("*")
         .eq("user_id", profile.id)
         .order("created_at", { ascending: false });
@@ -33,7 +33,8 @@ export default function GDPRPage() {
       return;
     }
 
-    const { error } = await supabase.from("gdpr_requests").insert({
+    const gdprRequests = (supabase as any).from("gdpr_requests");
+    const { error } = await gdprRequests.insert({
       user_id: profile?.id,
       organization_id: organization?.id,
       request_type: type,
@@ -46,10 +47,10 @@ export default function GDPRPage() {
     }
   };
 
-  const statusColors: Record<string, string> = {
+  const statusColors: Record<string, "yellow" | "blue" | "mint" | "red"> = {
     pending: "yellow",
     processing: "blue",
-    completed: "green",
+    completed: "mint",
     rejected: "red",
   };
 
@@ -175,7 +176,7 @@ export default function GDPRPage() {
                       <span className="font-medium text-gray-800">
                         {request.request_type === "data_export" ? "Export de données" : "Suppression de compte"}
                       </span>
-                      <Badge className={`bg-${statusColors[request.status]}-100 text-${statusColors[request.status]}-700`}>
+                      <Badge variant={statusColors[request.status] ?? "default"}>
                         {statusLabels[request.status]}
                       </Badge>
                     </div>

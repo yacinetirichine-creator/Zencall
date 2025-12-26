@@ -4,11 +4,13 @@ import { Header } from "@/components/layout";
 import { StatsCards, CallsChart, RecentCalls, LiveCallsMonitor } from "@/components/dashboard";
 import { useUser, useStats, useCalls } from "@/hooks";
 import { Spinner } from "@/components/ui";
+import { useI18n } from "@/i18n/provider";
 
 export default function DashboardPage() {
   const { organization, isLoading: userLoading } = useUser();
   const { stats, isLoading: statsLoading } = useStats(organization?.id);
   const { calls, isLoading: callsLoading } = useCalls({ organizationId: organization?.id, limit: 10 });
+  const { t } = useI18n();
 
   if (userLoading || statsLoading) {
     return (
@@ -20,7 +22,7 @@ export default function DashboardPage() {
 
   return (
     <>
-      <Header title="Tableau de bord" description="Vue d'ensemble de votre activité" />
+      <Header title={t("dashboard.overviewTitle")} description={t("dashboard.overviewDesc")} />
       <div className="p-6 space-y-6">
         {stats && organization && (
           <>

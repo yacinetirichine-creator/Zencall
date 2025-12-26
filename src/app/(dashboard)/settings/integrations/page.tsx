@@ -22,8 +22,8 @@ export default function IntegrationsPage() {
     if (!organization?.id) return;
 
     const fetchConfig = async () => {
-      const { data } = await supabase
-        .from("organizations")
+      const orgs = (supabase as any).from("organizations");
+      const { data } = await orgs
         .select("twilio_account_sid, twilio_phone_number, twilio_configured")
         .eq("id", organization.id)
         .single();
@@ -48,15 +48,13 @@ export default function IntegrationsPage() {
 
     setIsSaving(true);
     try {
-      const { error } = await supabase
-        .from("organizations")
-        .update({
+      const orgs = (supabase as any).from("organizations");
+      const { error } = await orgs.update({
           twilio_account_sid: twilioConfig.account_sid,
           twilio_auth_token_encrypted: twilioConfig.auth_token, // TODO: Chiffrer en prod
           twilio_phone_number: twilioConfig.phone_number,
           twilio_configured: true,
-        })
-        .eq("id", organization.id);
+        }).eq("id", organization.id);
 
       if (error) throw error;
 
@@ -91,15 +89,13 @@ export default function IntegrationsPage() {
   const removeTwilioConfig = async () => {
     if (!confirm("Supprimer la configuration Twilio ?")) return;
 
-    const { error } = await supabase
-      .from("organizations")
-      .update({
+    const orgs = (supabase as any).from("organizations");
+    const { error } = await orgs.update({
         twilio_account_sid: null,
         twilio_auth_token_encrypted: null,
         twilio_phone_number: null,
         twilio_configured: false,
-      })
-      .eq("id", organization?.id);
+      }).eq("id", organization?.id);
 
     if (!error) {
       setTwilioConfig({ account_sid: "", auth_token: "", phone_number: "" });
@@ -168,12 +164,12 @@ export default function IntegrationsPage() {
                   </div>
                 </div>
                 {twilioConfigured ? (
-                  <Badge className="bg-green-100 text-green-700">
+                  <Badge variant="mint">
                     <CheckCircle className="w-3 h-3 mr-1" />
                     Configuré
                   </Badge>
                 ) : (
-                  <Badge className="bg-gray-100 text-gray-700">Non configuré</Badge>
+                  <Badge variant="gray">Non configuré</Badge>
                 )}
               </div>
             </CardHeader>
@@ -189,7 +185,6 @@ export default function IntegrationsPage() {
                     value={twilioConfig.account_sid}
                     onChange={(e) => setTwilioConfig({ ...twilioConfig, account_sid: e.target.value })}
                     placeholder="ACxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-                    size="sm"
                   />
 
                   <Input
@@ -198,7 +193,6 @@ export default function IntegrationsPage() {
                     value={twilioConfig.auth_token}
                     onChange={(e) => setTwilioConfig({ ...twilioConfig, auth_token: e.target.value })}
                     placeholder="••••••••••••••••••••••••••••••"
-                    size="sm"
                   />
 
                   <Input
@@ -206,7 +200,6 @@ export default function IntegrationsPage() {
                     value={twilioConfig.phone_number}
                     onChange={(e) => setTwilioConfig({ ...twilioConfig, phone_number: e.target.value })}
                     placeholder="+33 6 12 34 56 78"
-                    size="sm"
                   />
 
                   <div className="flex gap-2">

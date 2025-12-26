@@ -7,9 +7,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Hero3D } from "@/components/landing/hero-3d";
 import { AudioIntro } from "@/components/landing/audio-intro";
 import { PricingSection } from "@/components/landing/pricing-section";
+import { LanguageSwitcher } from "@/components/layout/language-switcher";
+import { useI18n } from "@/i18n/provider";
 
 export default function HomePage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { t } = useI18n();
 
   return (
     <div className="min-h-screen bg-white selection:bg-zencall-coral-100 selection:text-zencall-coral-900 font-sans">
@@ -27,11 +30,14 @@ export default function HomePage() {
             </div>
             
             <nav className="hidden md:flex items-center gap-8">
-              <Link href="#features" className="text-sm font-medium text-gray-600 hover:text-zencall-coral-600 transition-colors">Fonctionnalités</Link>
-              <Link href="#pricing" className="text-sm font-medium text-gray-600 hover:text-zencall-coral-600 transition-colors">Tarifs</Link>
-              <Link href="/login" className="text-sm font-medium text-gray-900 hover:text-zencall-coral-600 transition-colors">Connexion</Link>
+              <Link href="#features" className="text-sm font-medium text-gray-600 hover:text-zencall-coral-600 transition-colors">{t("nav.features")}</Link>
+              <Link href="#pricing" className="text-sm font-medium text-gray-600 hover:text-zencall-coral-600 transition-colors">{t("nav.pricing")}</Link>
+              <div className="w-36">
+                <LanguageSwitcher />
+              </div>
+              <Link href="/login" className="text-sm font-medium text-gray-900 hover:text-zencall-coral-600 transition-colors">{t("nav.login")}</Link>
               <Link href="/register" className="bg-gray-900 text-white px-5 py-2.5 rounded-xl text-sm font-medium hover:bg-gray-800 transition-all hover:shadow-lg hover:-translate-y-0.5">
-                Essai gratuit
+                {t("nav.freeTrial")}
               </Link>
             </nav>
 
@@ -52,10 +58,13 @@ export default function HomePage() {
             className="fixed inset-0 z-40 bg-white pt-24 px-6 md:hidden"
           >
             <div className="flex flex-col gap-6 text-lg font-medium">
-              <Link href="#features" onClick={() => setIsMenuOpen(false)}>Fonctionnalités</Link>
-              <Link href="#pricing" onClick={() => setIsMenuOpen(false)}>Tarifs</Link>
-              <Link href="/login" onClick={() => setIsMenuOpen(false)}>Connexion</Link>
-              <Link href="/register" onClick={() => setIsMenuOpen(false)} className="text-zencall-coral-600">S'inscrire</Link>
+              <Link href="#features" onClick={() => setIsMenuOpen(false)}>{t("nav.features")}</Link>
+              <Link href="#pricing" onClick={() => setIsMenuOpen(false)}>{t("nav.pricing")}</Link>
+              <div className="max-w-xs">
+                <LanguageSwitcher showLabel />
+              </div>
+              <Link href="/login" onClick={() => setIsMenuOpen(false)}>{t("nav.login")}</Link>
+              <Link href="/register" onClick={() => setIsMenuOpen(false)} className="text-zencall-coral-600">{t("nav.signup")}</Link>
             </div>
           </motion.div>
         )}
@@ -72,23 +81,23 @@ export default function HomePage() {
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-zencall-coral-50 border border-zencall-coral-100 text-zencall-coral-600 text-sm font-medium mb-8 animate-fade-in-up">
               <Star className="w-4 h-4 fill-current" /> 
-              <span>Nouvelle IA Générative 2.0</span>
+              <span>{t("landing.badge")}</span>
             </div>
             <h1 className="text-5xl md:text-7xl font-display font-bold text-gray-900 mb-8 leading-[1.1]">
-              Votre standard <br />
+              {t("landing.titleA")} <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-zencall-coral-500 to-zencall-blue-500">
-                intelligent & humain
+                {t("landing.titleB")}
               </span>
             </h1>
             <p className="text-xl text-gray-600 mb-10 leading-relaxed max-w-lg">
-              Ne manquez plus aucun appel. Notre IA répond, qualifie et prend vos rendez-vous 24/7 avec une voix ultra-réaliste.
+              {t("landing.heroBody")}
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link href="/register" className="bg-zencall-coral-500 text-white px-8 py-4 rounded-2xl text-lg font-semibold hover:bg-zencall-coral-600 transition-all shadow-xl shadow-zencall-coral-200 hover:-translate-y-1 flex items-center justify-center gap-2">
-                Commencer maintenant <ArrowRight className="w-5 h-5" />
+                {t("landing.ctaStart")} <ArrowRight className="w-5 h-5" />
               </Link>
               <Link href="#demo" className="bg-white text-gray-900 border border-gray-200 px-8 py-4 rounded-2xl text-lg font-semibold hover:bg-gray-50 transition-all flex items-center justify-center">
-                Écouter une démo
+                {t("landing.ctaDemo")}
               </Link>
             </div>
             <div className="mt-8 flex items-center gap-4 text-sm text-gray-500">
@@ -97,7 +106,7 @@ export default function HomePage() {
                   <div key={i} className="w-8 h-8 rounded-full bg-gray-200 border-2 border-white" />
                 ))}
               </div>
-              <p>Déjà adopté par +500 entreprises</p>
+              <p>{t("landing.socialProof")}</p>
             </div>
           </motion.div>
           
@@ -122,11 +131,11 @@ export default function HomePage() {
             <span className="font-bold text-gray-900">Zencall</span>
           </div>
           <div className="flex gap-8 text-sm text-gray-600">
-            <Link href="/legal/privacy">Confidentialité</Link>
-            <Link href="/legal/terms">CGV</Link>
-            <Link href="mailto:contact@zencall.com">Contact</Link>
+            <Link href="/legal/privacy">{t("nav.privacy")}</Link>
+            <Link href="/legal/terms">{t("nav.terms")}</Link>
+            <Link href="mailto:contact@zencall.com">{t("nav.contact")}</Link>
           </div>
-          <p className="text-sm text-gray-400">© 2024 Zencall Inc.</p>
+          <p className="text-sm text-gray-400">{t("landing.footerCopyright", { year: new Date().getFullYear() })}</p>
         </div>
       </footer>
     </div>

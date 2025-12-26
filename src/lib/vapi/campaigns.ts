@@ -226,17 +226,23 @@ export class CampaignService {
       stats.success_rate = (stats.calls_completed / stats.calls_made) * 100;
     }
 
-    const durations = contacts
-      .filter((c) => c.call_log?.duration_seconds)
-      .map((c) => c.call_log.duration_seconds);
+    const durations = (contacts as any[])
+      .map((c) => {
+        const callLog = Array.isArray(c.call_log) ? c.call_log[0] : c.call_log;
+        return callLog?.duration_seconds;
+      })
+      .filter((v) => typeof v === "number" && Number.isFinite(v));
     
     if (durations.length > 0) {
       stats.avg_duration = durations.reduce((a, b) => a + b, 0) / durations.length;
     }
 
-    const costs = contacts
-      .filter((c) => c.call_log?.cost)
-      .map((c) => c.call_log.cost);
+    const costs = (contacts as any[])
+      .map((c) => {
+        const callLog = Array.isArray(c.call_log) ? c.call_log[0] : c.call_log;
+        return callLog?.cost;
+      })
+      .filter((v) => typeof v === "number" && Number.isFinite(v));
     
     if (costs.length > 0) {
       stats.total_cost = costs.reduce((a, b) => a + b, 0);

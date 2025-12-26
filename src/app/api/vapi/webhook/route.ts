@@ -205,7 +205,3 @@ function analyzeSentiment(summary?: string, transcript?: string): string {
   if (negativeCount > positiveCount) return "negative";
   return "neutral";
 }
-    console.error("Webhook error:", error);
-    return NextResponse.json({ error: "Webhook processing failed" }, { status: 500 });
-  }
-}

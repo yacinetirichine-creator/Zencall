@@ -44,7 +44,10 @@ export default function AssistantsPage() {
           description="Gérez vos assistants vocaux IA"
           actions={
             <Link href="/dashboard/assistants/new">
-              <Button leftIcon={<Plus className="w-4 h-4" />}>Nouvel assistant</Button>
+              <Button>
+                <Plus className="w-4 h-4 mr-2" />
+                Nouvel assistant
+              </Button>
             </Link>
           }
         />

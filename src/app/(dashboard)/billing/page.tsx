@@ -44,7 +44,7 @@ export default function BillingPage() {
                   <h3 className="text-lg font-display font-bold text-gray-900">Abonnement actuel</h3>
                   <p className="text-sm text-gray-500">Plan {plans.find(p => p.name === currentPlan)?.displayName}</p>
                 </div>
-                <Badge variant={subscription.status === 'active' ? 'green' : 'gray'} className="px-3 py-1">
+                <Badge variant={subscription.status === 'active' ? 'mint' : 'gray'} className="px-3 py-1">
                   {subscription.status === 'active' ? 'Actif' : subscription.status}
                 </Badge>
               </div>
@@ -167,7 +167,7 @@ export default function BillingPage() {
                       <TableCell className="text-gray-500">{formatDate(invoice.created_at)}</TableCell>
                       <TableCell className="font-medium">{invoice.amount_due.toFixed(2)} {invoice.currency}</TableCell>
                       <TableCell>
-                        <Badge variant={invoice.status === 'paid' ? 'green' : 'gray'} className="rounded-lg">
+                        <Badge variant={invoice.status === 'paid' ? 'mint' : 'gray'} className="rounded-lg">
                           {invoice.status === 'paid' ? 'Payée' : invoice.status}
                         </Badge>
                       </TableCell>

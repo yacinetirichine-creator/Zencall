@@ -21,7 +21,8 @@ export default function ApiKeysPage() {
     if (!organization?.id) return;
     const fetchKeys = async () => {
       const supabase = createClient();
-      const { data } = await supabase.from("api_keys").select("*").eq("organization_id", organization.id);
+      const apiKeys = (supabase as any).from("api_keys");
+      const { data } = await apiKeys.select("*").eq("organization_id", organization.id);
       setKeys(data || []);
     };
     fetchKeys();
@@ -30,7 +31,8 @@ export default function ApiKeysPage() {
   const handleCreate = async () => {
     const key = generateApiKey();
     const supabase = createClient();
-    const { data } = await supabase.from("api_keys").insert({
+    const apiKeys = (supabase as any).from("api_keys");
+    const { data } = await apiKeys.insert({
       organization_id: organization?.id,
       name: newKeyName,
       key_hash: btoa(key), // In real app, use proper hashing
@@ -56,7 +58,8 @@ export default function ApiKeysPage() {
   const handleDelete = async (id: string) => {
     if (!confirm("Supprimer cette clé API ?")) return;
     const supabase = createClient();
-    await supabase.from("api_keys").delete().eq("id", id);
+    const apiKeys = (supabase as any).from("api_keys");
+    await apiKeys.delete().eq("id", id);
     setKeys(keys.filter(k => k.id !== id));
   };
 

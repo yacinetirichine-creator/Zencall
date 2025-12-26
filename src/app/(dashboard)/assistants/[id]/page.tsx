@@ -18,7 +18,7 @@ export default function AssistantDetailPage() {
   
   const [formData, setFormData] = useState<any>(null);
   const [isSaving, setIsSaving] = useState(false);
-  const [transferNumbers, setTransferNumbers] = useState<{name: string; number: string; priority: number}[]>([]);
+  const [transferNumbers, setTransferNumbers] = useState<{ name: string; number: string; priority: number }[]>([]);
 
   useEffect(() => {
     if (assistant) {
@@ -31,7 +31,19 @@ export default function AssistantDetailPage() {
         system_prompt: assistant.system_prompt || "",
         is_active: assistant.is_active,
       });
-      setTransferNumbers(assistant.settings?.transfer_numbers || []);
+
+      const rawTransferNumbers = (assistant as any)?.settings?.transfer_numbers as unknown;
+      const normalized = Array.isArray(rawTransferNumbers)
+        ? rawTransferNumbers
+            .filter(Boolean)
+            .map((item: any, index: number) => ({
+              name: typeof item?.name === "string" ? item.name : "",
+              number: typeof item?.number === "string" ? item.number : "",
+              priority: typeof item?.priority === "number" ? item.priority : index + 1,
+            }))
+        : [];
+
+      setTransferNumbers(normalized);
     }
   }, [assistant]);
 

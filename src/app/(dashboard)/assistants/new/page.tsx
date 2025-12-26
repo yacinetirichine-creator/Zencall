@@ -40,19 +40,22 @@ export default function NewAssistantPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    
-    const assistant = await createAssistant({
-      ...formData,
-      type: formData.type as any,
-      language: formData.language as any,
-      is_active: true,
-      settings: {},
-    });
 
-    if (assistant) {
-      router.push(`/dashboard/assistants/${assistant.id}`);
+    try {
+      const created = (await createAssistant({
+        ...formData,
+        type: formData.type as any,
+        language: formData.language as any,
+        is_active: true,
+        settings: {},
+      })) as unknown as { id?: string } | null;
+
+      if (created?.id) {
+        router.push(`/dashboard/assistants/${created.id}`);
+      }
+    } finally {
+      setIsLoading(false);
     }
-    setIsLoading(false);
   };
 
   const defaultPrompts: Record<string, string> = {
