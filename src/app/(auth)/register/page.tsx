@@ -9,20 +9,56 @@ import { useI18n } from "@/i18n/provider";
 export default function RegisterPage() {
   const { t } = useI18n();
   const [formData, setFormData] = useState({ fullName: "", email: "", password: "", organizationName: "" });
+  const [legalConsent, setLegalConsent] = useState({
+    cgu: false,
+    cgv: false,
+    privacy: false,
+    marketing: false,
+  });
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Validate legal consent
+    if (!legalConsent.cgu || !legalConsent.cgv || !legalConsent.privacy) {
+      setError("Vous devez accepter les CGU, CGV et la Politique de Confidentialité pour continuer.");
+      return;
+    }
+    
     setIsLoading(true);
     setError("");
     try {
       const supabase = createClient();
-      const { error } = await supabase.auth.signUp({
+      
+      // Get user IP and User Agent for legal tracking
+      const ipResponse = await fetch('https://api.ipify.org?format=json');
+      const { ip } = await ipResponse.json();
+      const userAgent = navigator.userAgent;
+      
+      const { data, error } = await supabase.auth.signUp({
         email: formData.email,
         password: formData.password,
-        options: { data: { full_name: formData.fullName, organization_name: formData.organizationName } },
+        options: { 
+          data: { 
+            full_name: formData.fullName, 
+            organization_name: formData.organizationName,
+            legal_consent: {
+              cgu: legalConsent.cgu,
+              cgv: legalConsent.cgv,
+              privacy: legalConsent.privacy,
+              marketing: legalConsent.marketing,
+              ip_address: ip,
+              user_agent: userAgent,
+              accepted_at: new Date().toISOString(),
+              cgu_version: '1.0',
+              cgv_version: '1.0',
+              privacy_version: '1.0',
+            }
+          } 
+        },
       });
       if (error) throw error;
       setSuccess(true);
@@ -32,6 +68,8 @@ export default function RegisterPage() {
       setIsLoading(false);
     }
   };
+  
+  const isFormValid = formData.fullName && formData.email && formData.password && formData.organizationName && legalConsent.cgu && legalConsent.cgv && legalConsent.privacy;
 
   if (success) {
     return (
@@ -98,7 +136,81 @@ export default function RegisterPage() {
               </div>
             </div>
 
-            <button type="submit" disabled={isLoading} className="w-full bg-zencall-coral-200 text-gray-800 py-2.5 rounded-xl font-medium hover:bg-zencall-coral-300 disabled:opacity-50 flex items-center justify-center mt-2">
+            {/* Legal Consent Checkboxes */}
+            <div className="space-y-3 pt-4 border-t border-gray-200">
+              <div className="flex items-start">
+                <input
+                  type="checkbox"
+                  id="consent-cgu"
+                  checked={legalConsent.cgu}
+                  onChange={(e) => setLegalConsent({ ...legalConsent, cgu: e.target.checked })}
+                  className="mt-1 h-4 w-4 text-zencall-coral-600 focus:ring-zencall-coral-200 border-gray-300 rounded"
+                  required
+                />
+                <label htmlFor="consent-cgu" className="ml-2 text-sm text-gray-700">
+                  J'accepte les{' '}
+                  <Link href="/legal/cgu" target="_blank" className="text-zencall-coral-600 hover:underline font-medium">
+                    Conditions Générales d'Utilisation (CGU)
+                  </Link>
+                  <span className="text-red-500 ml-1">*</span>
+                </label>
+              </div>
+
+              <div className="flex items-start">
+                <input
+                  type="checkbox"
+                  id="consent-cgv"
+                  checked={legalConsent.cgv}
+                  onChange={(e) => setLegalConsent({ ...legalConsent, cgv: e.target.checked })}
+                  className="mt-1 h-4 w-4 text-zencall-coral-600 focus:ring-zencall-coral-200 border-gray-300 rounded"
+                  required
+                />
+                <label htmlFor="consent-cgv" className="ml-2 text-sm text-gray-700">
+                  J'accepte les{' '}
+                  <Link href="/legal/cgv" target="_blank" className="text-zencall-coral-600 hover:underline font-medium">
+                    Conditions Générales de Vente (CGV)
+                  </Link>
+                  <span className="text-red-500 ml-1">*</span>
+                </label>
+              </div>
+
+              <div className="flex items-start">
+                <input
+                  type="checkbox"
+                  id="consent-privacy"
+                  checked={legalConsent.privacy}
+                  onChange={(e) => setLegalConsent({ ...legalConsent, privacy: e.target.checked })}
+                  className="mt-1 h-4 w-4 text-zencall-coral-600 focus:ring-zencall-coral-200 border-gray-300 rounded"
+                  required
+                />
+                <label htmlFor="consent-privacy" className="ml-2 text-sm text-gray-700">
+                  J'accepte la{' '}
+                  <Link href="/legal/privacy" target="_blank" className="text-zencall-coral-600 hover:underline font-medium">
+                    Politique de Confidentialité
+                  </Link>
+                  <span className="text-red-500 ml-1">*</span>
+                </label>
+              </div>
+
+              <div className="flex items-start">
+                <input
+                  type="checkbox"
+                  id="consent-marketing"
+                  checked={legalConsent.marketing}
+                  onChange={(e) => setLegalConsent({ ...legalConsent, marketing: e.target.checked })}
+                  className="mt-1 h-4 w-4 text-zencall-coral-600 focus:ring-zencall-coral-200 border-gray-300 rounded"
+                />
+                <label htmlFor="consent-marketing" className="ml-2 text-sm text-gray-700">
+                  J'accepte de recevoir des communications marketing par email (optionnel)
+                </label>
+              </div>
+
+              <p className="text-xs text-gray-500 mt-2">
+                <span className="text-red-500">*</span> Champs obligatoires
+              </p>
+            </div>
+
+            <button type="submit" disabled={isLoading || !isFormValid} className="w-full bg-zencall-coral-200 text-gray-800 py-2.5 rounded-xl font-medium hover:bg-zencall-coral-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center mt-2">
               {isLoading ? <Loader2 className="w-5 h-5 animate-spin" /> : t("auth.register.submit")}
             </button>
           </form>
