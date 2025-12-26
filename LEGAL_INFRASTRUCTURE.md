@@ -37,7 +37,7 @@ This legal infrastructure provides **"béton armé"** (reinforced concrete) lega
 **JARVIS** (Société par Actions Simplifiée)  
 - RCS: [À COMPLÉTER AVEC KBIS]
 - Siège social: [À COMPLÉTER]
-- Contact DPO: dpo@zencall.ai
+- Contact DPO: dpo@zen-call.net
 
 ---
 
@@ -108,7 +108,7 @@ This legal infrastructure provides **"béton armé"** (reinforced concrete) lega
 #### Ultra-Complete GDPR Coverage:
 
 **Article 1:** JARVIS as Data Controller (with full company details)  
-**Article 2:** DPO Contact (dpo@zencall.ai)  
+**Article 2:** DPO Contact (dpo@zen-call.net)  
 **Article 3:** Scope of Application  
 **Article 4:** GDPR Fundamental Principles (6 principles)  
 **Article 5:** Data Collected (6 categories - 40+ data points)
@@ -353,7 +353,7 @@ Returns `true` if user needs to re-accept due to version changes.
 ### Article 13/14: Information to be Provided
 
 ✅ **Data controller identity:** JARVIS (Article 1)  
-✅ **DPO contact:** dpo@zencall.ai (Article 2)  
+✅ **DPO contact:** dpo@zen-call.net (Article 2)  
 ✅ **Processing purposes:** Detailed table (Article 6)  
 ✅ **Legal basis:** Mapped per purpose (Article 6)  
 ✅ **Data retention:** Complete periods (Article 9)  
@@ -366,7 +366,7 @@ Returns `true` if user needs to re-accept due to version changes.
 
 | Right | Article | Implementation | Location |
 |-------|---------|----------------|----------|
-| Access | 15 | DPO email: dpo@zencall.ai | Privacy Policy Art. 12.1 |
+| Access | 15 | DPO email: dpo@zen-call.net | Privacy Policy Art. 12.1 |
 | Rectification | 16 | Account settings + DPO | Privacy Policy Art. 12.2 |
 | Erasure | 17 | DPO email + account deletion | Privacy Policy Art. 12.3 |
 | Limitation | 18 | DPO email | Privacy Policy Art. 12.4 |
@@ -534,7 +534,7 @@ export async function POST(request: Request) {
 
 Add unsubscribe link to marketing emails:
 ```
-https://zencall.ai/api/unsubscribe?user_id={user_id}&token={signed_token}
+https://zen-call.net/api/unsubscribe?user_id={user_id}&token={signed_token}
 ```
 
 ---
@@ -615,7 +615,7 @@ https://zencall.ai/api/unsubscribe?user_id={user_id}&token={signed_token}
 
 If DPO changes:
 
-1. Update all legal documents (search for `dpo@zencall.ai`)
+1. Update all legal documents (search for `dpo@zen-call.net`)
 2. Update email forwarding rules
 3. Notify CNIL of DPO change (if required)
 4. Update privacy policy Article 2
@@ -652,15 +652,15 @@ ORDER BY month DESC;
 ## 📞 Support Contacts
 
 ### Legal Issues
-- **Email:** legal@zencall.ai
+- **Email:** legal@zen-call.net
 - **Phone:** [À COMPLÉTER]
 
 ### Data Protection (DPO)
-- **Email:** dpo@zencall.ai
+- **Email:** dpo@zen-call.net
 - **Postal:** JARVIS - DPO, [ADRESSE COMPLÈTE]
 
 ### Technical Support
-- **Email:** support@zencall.ai
+- **Email:** support@zen-call.net
 - **Chat:** Available in user dashboard
 
 ### CNIL Contact
@@ -820,9 +820,9 @@ IP addresses are considered personal data under GDPR:
 - [ ] `005_legal_acceptances.sql` migration deployed to production
 - [ ] Registration flow tested end-to-end
 - [ ] Legal acceptances table receiving data correctly
-- [ ] DPO email (dpo@zencall.ai) set up and monitored
-- [ ] Privacy email (privacy@zencall.ai) set up and monitored
-- [ ] Legal email (legal@zencall.ai) set up and monitored
+- [ ] DPO email (dpo@zen-call.net) set up and monitored
+- [ ] Privacy email (privacy@zen-call.net) set up and monitored
+- [ ] Legal email (legal@zen-call.net) set up and monitored
 - [ ] Cookie consent banner deployed and functional
 - [ ] Encryption keys generated and stored securely (ENCRYPTION_KEY)
 - [ ] Rate limiting configured (Upstash Redis)

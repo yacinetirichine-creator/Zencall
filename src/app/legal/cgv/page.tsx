@@ -40,7 +40,7 @@ export default function CGVPage() {
                   <li><strong>RCS :</strong> [Numéro selon KBIS]</li>
                   <li><strong>SIRET :</strong> [Numéro selon KBIS]</li>
                   <li><strong>N° TVA intracommunautaire :</strong> [À compléter]</li>
-                  <li><strong>Email :</strong> billing@zencall.ai</li>
+                  <li><strong>Email :</strong> billing@zen-call.net</li>
                 </ul>
               </div>
 
@@ -128,7 +128,7 @@ export default function CGVPage() {
               
               <h3 className="font-bold text-gray-900 mt-4 mb-2">3.1 Processus de Commande</h3>
               <p className="mb-4">
-                La souscription s'effectue en ligne sur zencall.ai selon le processus suivant :
+                La souscription s'effectue en ligne sur zen-call.net selon le processus suivant :
               </p>
               <ol className="list-decimal pl-6 mb-4 space-y-2">
                 <li>Sélection du forfait</li>
@@ -263,7 +263,7 @@ export default function CGVPage() {
                 Pour exercer le droit de rétractation, le consommateur doit notifier sa décision par :
               </p>
               <ul className="list-disc pl-6 mb-4 space-y-1">
-                <li>Email à : billing@zencall.ai</li>
+                <li>Email à : billing@zen-call.net</li>
                 <li>Courrier recommandé à : JARVIS - Service Facturation - [Adresse KBIS]</li>
               </ul>
 
@@ -473,7 +473,7 @@ export default function CGVPage() {
               <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
                 <p className="mb-2">Pour toute question relative aux CGV ou à la facturation :</p>
                 <ul className="list-none space-y-2 text-sm">
-                  <li><strong>Email :</strong> billing@zencall.ai</li>
+                  <li><strong>Email :</strong> billing@zen-call.net</li>
                   <li><strong>Téléphone :</strong> [À compléter]</li>
                   <li><strong>Adresse postale :</strong> JARVIS - Service Facturation<br/>[Adresse selon KBIS]</li>
                 </ul>

@@ -38,8 +38,12 @@ export function formatDate(date: Date | string): string {
   return new Date(date).toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" });
 }
 
-export function formatCurrency(amount: number): string {
-  return new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR" }).format(amount);
+export function formatCurrency(amount: number, currency: string = "EUR"): string {
+  return new Intl.NumberFormat("fr-FR", { style: "currency", currency }).format(amount);
+}
+
+export function formatNumber(num: number): string {
+  return new Intl.NumberFormat("fr-FR").format(num);
 }
 
 export function translateType(type: string): string {

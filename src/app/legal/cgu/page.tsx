@@ -40,7 +40,7 @@ export default function CGUPage() {
                   <li><strong>SIRET :</strong> [Numéro selon KBIS]</li>
                   <li><strong>N° TVA intracommunautaire :</strong> [À compléter]</li>
                   <li><strong>Directeur de publication :</strong> [Représentant légal]</li>
-                  <li><strong>Contact :</strong> contact@zencall.ai</li>
+                  <li><strong>Contact :</strong> contact@zen-call.net</li>
                 </ul>
               </div>
 
@@ -323,7 +323,7 @@ export default function CGUPage() {
                   <li>Durée de conservation limitée (24 mois max sauf obligation légale)</li>
                   <li>Droit d'accès, rectification, suppression, portabilité, opposition</li>
                   <li>Notification sous 72h en cas de violation de données</li>
-                  <li>DPO joignable à dpo@zencall.ai</li>
+                  <li>DPO joignable à dpo@zen-call.net</li>
                 </ul>
               </div>
             </section>
@@ -571,7 +571,7 @@ export default function CGUPage() {
               <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
                 <p className="mb-2">Pour toute question relative aux CGU :</p>
                 <ul className="list-none space-y-2 text-sm">
-                  <li><strong>Email :</strong> legal@zencall.ai</li>
+                  <li><strong>Email :</strong> legal@zen-call.net</li>
                   <li><strong>Téléphone :</strong> [À compléter]</li>
                   <li><strong>Adresse postale :</strong> JARVIS - Service Juridique<br/>[Adresse selon KBIS]</li>
                 </ul>

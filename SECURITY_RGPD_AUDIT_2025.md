@@ -427,7 +427,7 @@ export default function GDPRSettingsPage() {
   <Link href="/legal/privacy">Confidentialité</Link>
   <Link href="/legal/cookies">Cookies</Link>
   <Link href="/legal/terms">CGV</Link>
-  <a href="mailto:dpo@zencall.ai">Contact DPO</a>
+  <a href="mailto:dpo@zen-call.net">Contact DPO</a>
 </footer>
 ```
 
@@ -573,4 +573,4 @@ Pour être 100% conforme avant production :
 
 **Prochaine révision** : Après implémentation Phase 1 (7 jours)  
 **Responsable** : Équipe Tech + DPO  
-**Contact DPO** : À définir (dpo@zencall.ai)
+**Contact DPO** : À définir (dpo@zen-call.net)

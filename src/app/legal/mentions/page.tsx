@@ -59,7 +59,7 @@ export default function MentionsLegalesPage() {
                   </div>
                   <div>
                     <dt className="font-bold text-gray-900">Email :</dt>
-                    <dd><a href="mailto:contact@zencall.ai" className="text-blue-600 hover:underline">contact@zencall.ai</a></dd>
+                    <dd><a href="mailto:contact@zen-call.net" className="text-blue-600 hover:underline">contact@zen-call.net</a></dd>
                   </div>
                   <div>
                     <dt className="font-bold text-gray-900">Téléphone :</dt>
@@ -73,7 +73,7 @@ export default function MentionsLegalesPage() {
             <section>
               <h2 className="text-xl font-bold text-gray-900 mb-4">2. Directeur de la Publication</h2>
               <p className="text-gray-700">
-                Le directeur de la publication du site www.zencall.ai est <strong>[Nom du représentant légal]</strong>, 
+                Le directeur de la publication du site www.zen-call.net est <strong>[Nom du représentant légal]</strong>, 
                 en qualité de représentant légal de la société JARVIS.
               </p>
             </section>
@@ -160,7 +160,7 @@ export default function MentionsLegalesPage() {
               <h2 className="text-xl font-bold text-gray-900 mb-4">4. Propriété Intellectuelle</h2>
               
               <p className="mb-4">
-                L'ensemble des éléments composant le site www.zencall.ai (structure, textes, graphismes, logos, 
+                L'ensemble des éléments composant le site www.zen-call.net (structure, textes, graphismes, logos, 
                 icônes, sons, logiciels, bases de données, etc.) sont la propriété exclusive de JARVIS ou de ses 
                 partenaires, et sont protégés par les lois françaises et internationales relatives à la propriété 
                 intellectuelle.
@@ -206,7 +206,7 @@ export default function MentionsLegalesPage() {
                 
                 <h3 className="font-bold text-blue-900 mb-2 mt-4">Délégué à la Protection des Données (DPO) :</h3>
                 <p className="text-sm">
-                  Email : <a href="mailto:dpo@zencall.ai" className="text-blue-600 hover:underline">dpo@zencall.ai</a>
+                  Email : <a href="mailto:dpo@zen-call.net" className="text-blue-600 hover:underline">dpo@zen-call.net</a>
                 </p>
               </div>
 
@@ -230,7 +230,7 @@ export default function MentionsLegalesPage() {
               </ul>
 
               <p className="mt-4 text-sm">
-                Pour exercer vos droits, contactez : <a href="mailto:dpo@zencall.ai" className="text-blue-600 hover:underline">dpo@zencall.ai</a>
+                Pour exercer vos droits, contactez : <a href="mailto:dpo@zen-call.net" className="text-blue-600 hover:underline">dpo@zen-call.net</a>
               </p>
 
               <p className="mt-2 text-sm">
@@ -246,7 +246,7 @@ export default function MentionsLegalesPage() {
               <h2 className="text-xl font-bold text-gray-900 mb-4">6. Cookies</h2>
               
               <p className="mb-4">
-                Le site www.zencall.ai utilise des cookies pour améliorer l'expérience utilisateur et analyser 
+                Le site www.zen-call.net utilise des cookies pour améliorer l'expérience utilisateur et analyser 
                 l'audience du site.
               </p>
 
@@ -309,15 +309,15 @@ export default function MentionsLegalesPage() {
               <h2 className="text-xl font-bold text-gray-900 mb-4">8. Liens Hypertextes</h2>
               
               <p className="mb-4">
-                Le site www.zencall.ai peut contenir des liens hypertextes vers d'autres sites internet. 
+                Le site www.zen-call.net peut contenir des liens hypertextes vers d'autres sites internet. 
                 JARVIS ne dispose d'aucun contrôle sur ces sites et décline toute responsabilité quant à 
                 leur contenu ou leur disponibilité.
               </p>
 
               <p className="mb-4">
-                La création de liens hypertextes vers le site www.zencall.ai est soumise à l'autorisation 
+                La création de liens hypertextes vers le site www.zen-call.net est soumise à l'autorisation 
                 préalable écrite de JARVIS. Les demandes doivent être adressées à{" "}
-                <a href="mailto:contact@zencall.ai" className="text-blue-600 hover:underline">contact@zencall.ai</a>.
+                <a href="mailto:contact@zen-call.net" className="text-blue-600 hover:underline">contact@zen-call.net</a>.
               </p>
             </section>
 
@@ -330,7 +330,7 @@ export default function MentionsLegalesPage() {
               </p>
 
               <p className="mb-4">
-                Tout litige relatif à l'utilisation du site www.zencall.ai sera soumis à la compétence exclusive 
+                Tout litige relatif à l'utilisation du site www.zen-call.net sera soumis à la compétence exclusive 
                 des tribunaux du ressort de [VILLE DU SIÈGE SOCIAL], sauf dispositions légales contraires 
                 (notamment pour les consommateurs).
               </p>
@@ -347,24 +347,24 @@ export default function MentionsLegalesPage() {
                   <div>
                     <dt className="font-bold text-gray-900">Email principal :</dt>
                     <dd>
-                      <a href="mailto:contact@zencall.ai" className="text-blue-600 hover:underline">
-                        contact@zencall.ai
+                      <a href="mailto:contact@zen-call.net" className="text-blue-600 hover:underline">
+                        contact@zen-call.net
                       </a>
                     </dd>
                   </div>
                   <div>
                     <dt className="font-bold text-gray-900">Questions juridiques :</dt>
                     <dd>
-                      <a href="mailto:legal@zencall.ai" className="text-blue-600 hover:underline">
-                        legal@zencall.ai
+                      <a href="mailto:legal@zen-call.net" className="text-blue-600 hover:underline">
+                        legal@zen-call.net
                       </a>
                     </dd>
                   </div>
                   <div>
                     <dt className="font-bold text-gray-900">Protection des données :</dt>
                     <dd>
-                      <a href="mailto:dpo@zencall.ai" className="text-blue-600 hover:underline">
-                        dpo@zencall.ai
+                      <a href="mailto:dpo@zen-call.net" className="text-blue-600 hover:underline">
+                        dpo@zen-call.net
                       </a>
                     </dd>
                   </div>

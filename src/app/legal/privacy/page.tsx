@@ -31,7 +31,7 @@ export default function PrivacyPolicyPage() {
                 <p className="mb-2">Société par actions simplifiée (SAS)</p>
                 <p className="mb-2">Immatriculée au RCS de [VILLE] sous le numéro [NUMÉRO KBIS]</p>
                 <p className="mb-2">Siège social : [ADRESSE COMPLÈTE]</p>
-                <p className="mb-2">Email : privacy@zencall.ai</p>
+                <p className="mb-2">Email : privacy@zen-call.net</p>
                 <p className="mb-2">Téléphone : [NUMÉRO]</p>
               </div>
               <p className="mb-4">
@@ -47,7 +47,7 @@ export default function PrivacyPolicyPage() {
               </p>
               <div className="bg-gray-50 p-4 rounded-lg mb-4">
                 <p className="mb-2"><strong>Délégué à la Protection des Données</strong></p>
-                <p className="mb-2">Email : dpo@zencall.ai</p>
+                <p className="mb-2">Email : dpo@zen-call.net</p>
                 <p className="mb-2">Adresse postale : JARVIS - DPO, [ADRESSE COMPLÈTE]</p>
               </div>
               <p className="mb-4">
@@ -287,7 +287,7 @@ export default function PrivacyPolicyPage() {
 
               <h3 className="text-xl font-semibold mb-3">8.3. Droit d'Information</h3>
               <p className="mb-4">
-                Vous pouvez obtenir une copie des garanties mises en place pour encadrer les transferts internationaux en contactant notre DPO à dpo@zencall.ai.
+                Vous pouvez obtenir une copie des garanties mises en place pour encadrer les transferts internationaux en contactant notre DPO à dpo@zen-call.net.
               </p>
             </section>
 
@@ -478,7 +478,7 @@ export default function PrivacyPolicyPage() {
                 Pour exercer l'un de ces droits, contactez-nous par :
               </p>
               <ul className="list-disc pl-6 mb-4">
-                <li><strong>Email :</strong> dpo@zencall.ai (recommandé)</li>
+                <li><strong>Email :</strong> dpo@zen-call.net (recommandé)</li>
                 <li><strong>Courrier postal :</strong> JARVIS - DPO, [ADRESSE COMPLÈTE]</li>
               </ul>
               <p className="mb-4">
@@ -514,7 +514,7 @@ export default function PrivacyPolicyPage() {
                 JARVIS ne collecte pas sciemment de données personnelles concernant des mineurs de moins de 15 ans. Si nous découvrons qu'un mineur nous a fourni des données personnelles, nous supprimerons ces informations dans les plus brefs délais.
               </p>
               <p className="mb-4">
-                Si vous êtes parent ou tuteur légal et que vous avez connaissance que votre enfant nous a fourni des données personnelles, contactez-nous immédiatement à dpo@zencall.ai.
+                Si vous êtes parent ou tuteur légal et que vous avez connaissance que votre enfant nous a fourni des données personnelles, contactez-nous immédiatement à dpo@zen-call.net.
               </p>
             </section>
 
@@ -561,12 +561,12 @@ export default function PrivacyPolicyPage() {
               </p>
               <div className="bg-gray-50 p-4 rounded-lg mb-4">
                 <p className="mb-3"><strong>Délégué à la Protection des Données (DPO)</strong></p>
-                <p className="mb-2">📧 <strong>Email :</strong> dpo@zencall.ai</p>
+                <p className="mb-2">📧 <strong>Email :</strong> dpo@zen-call.net</p>
                 <p className="mb-2">📮 <strong>Courrier :</strong> JARVIS - DPO, [ADRESSE COMPLÈTE]</p>
                 <p className="mb-3">📞 <strong>Téléphone :</strong> [NUMÉRO]</p>
                 
                 <p className="mb-3 mt-4"><strong>Service Client</strong></p>
-                <p className="mb-2">📧 <strong>Support :</strong> support@zencall.ai</p>
+                <p className="mb-2">📧 <strong>Support :</strong> support@zen-call.net</p>
               </div>
               <p className="mb-4">
                 Nous nous engageons à vous répondre dans les meilleurs délais et à traiter votre demande avec la plus grande attention.
