@@ -39,6 +39,7 @@ export const messagesByLocale: Record<Locale, Messages> = {
       subtitle: "Choisissez le plan adapté à votre volume d'appels. Changez à tout moment.",
       perMonth: "/mois",
       includedCalls: "d'appels inclus",
+      minutesIncluded: "minutes incluses",
       mostPopular: "Le plus populaire",
       choosePlan: "Choisir {{plan}}",
       plans: {
@@ -146,6 +147,7 @@ export const messagesByLocale: Record<Locale, Messages> = {
       subtitle: "Pick the plan that matches your call volume. Change anytime.",
       perMonth: "/month",
       includedCalls: "included calling",
+      minutesIncluded: "minutes included",
       mostPopular: "Most popular",
       choosePlan: "Choose {{plan}}",
       plans: {
@@ -253,6 +255,7 @@ export const messagesByLocale: Record<Locale, Messages> = {
       subtitle: "Elige el plan adecuado para tu volumen de llamadas. Cambia cuando quieras.",
       perMonth: "/mes",
       includedCalls: "de llamadas incluidas",
+      minutesIncluded: "minutos incluidos",
       mostPopular: "Más popular",
       choosePlan: "Elegir {{plan}}",
       plans: {
@@ -360,6 +363,7 @@ export const messagesByLocale: Record<Locale, Messages> = {
       subtitle: "Escolha o plano ideal para seu volume de chamadas. Altere quando quiser.",
       perMonth: "/mês",
       includedCalls: "de chamadas incluídas",
+      minutesIncluded: "minutos incluídos",
       mostPopular: "Mais popular",
       choosePlan: "Escolher {{plan}}",
       plans: {
@@ -467,6 +471,7 @@ export const messagesByLocale: Record<Locale, Messages> = {
       subtitle: "Выберите план под ваш объём звонков. Меняйте в любой момент.",
       perMonth: "/мес",
       includedCalls: "включено минут звонков",
+      minutesIncluded: "минут включено",
       mostPopular: "Самый популярный",
       choosePlan: "Выбрать {{plan}}",
       plans: {
@@ -574,6 +579,7 @@ export const messagesByLocale: Record<Locale, Messages> = {
       subtitle: "اختر الخطة المناسبة لحجم مكالماتك. غيّر في أي وقت.",
       perMonth: "/شهر",
       includedCalls: "مكالمات مشمولة",
+      minutesIncluded: "دقائق مشمولة",
       mostPopular: "الأكثر شيوعاً",
       choosePlan: "اختر {{plan}}",
       plans: {
@@ -681,6 +687,7 @@ export const messagesByLocale: Record<Locale, Messages> = {
       subtitle: "अपने कॉल वॉल्यूम के अनुसार प्लान चुनें। कभी भी बदलें।",
       perMonth: "/माह",
       includedCalls: "शामिल कॉलिंग",
+      minutesIncluded: "मिनट शामिल",
       mostPopular: "सबसे लोकप्रिय",
       choosePlan: "{{plan}} चुनें",
       plans: {
@@ -787,6 +794,7 @@ export const messagesByLocale: Record<Locale, Messages> = {
       subtitle: "选择适合你通话量的方案，随时可更改。",
       perMonth: "/月",
       includedCalls: "包含通话",
+      minutesIncluded: "分钟包含",
       mostPopular: "最受欢迎",
       choosePlan: "选择 {{plan}}",
       plans: {
@@ -894,6 +902,7 @@ export const messagesByLocale: Record<Locale, Messages> = {
       subtitle: "আপনার কল ভলিউম অনুযায়ী প্ল্যান বাছুন। যেকোনো সময় পরিবর্তন করুন।",
       perMonth: "/মাস",
       includedCalls: "অন্তর্ভুক্ত কলিং",
+      minutesIncluded: "মিনিট অন্তর্ভুক্ত",
       mostPopular: "সবচেয়ে জনপ্রিয়",
       choosePlan: "{{plan}} বাছুন",
       plans: {
@@ -1001,6 +1010,7 @@ export const messagesByLocale: Record<Locale, Messages> = {
       subtitle: "اپنے کال والیوم کے مطابق پلان منتخب کریں۔ کبھی بھی تبدیل کریں۔",
       perMonth: "/ماہ",
       includedCalls: "شامل کالنگ",
+      minutesIncluded: "منٹ شامل",
       mostPopular: "سب سے مقبول",
       choosePlan: "{{plan}} منتخب کریں",
       plans: {
