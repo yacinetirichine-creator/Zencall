@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2024-12-18.acacia',
+  apiVersion: '2025-12-15.clover',
 });
 
 /**
@@ -117,7 +117,7 @@ async function handlePaymentSuccess(payment: Stripe.PaymentIntent) {
       amount_cents: payment.amount,
       currency: payment.currency.toUpperCase(),
       stripe_payment_id: payment.id,
-      stripe_invoice_id: payment.invoice as string || null,
+      stripe_invoice_id: (payment as any).invoice as string || null,
       plan_type: planType,
       billing_period: billingPeriod,
       description: `${planType} plan - ${billingPeriod} billing`,
@@ -142,7 +142,7 @@ async function handlePaymentSuccess(payment: Stripe.PaymentIntent) {
 async function handleInvoicePaid(invoice: Stripe.Invoice) {
   console.log('Processing invoice payment:', invoice.id);
   
-  const userId = invoice.metadata.user_id || invoice.customer as string;
+  const userId = invoice.metadata?.user_id || invoice.customer as string;
   
   // Track revenue
   await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/admin/revenue/track`, {
@@ -155,10 +155,10 @@ async function handleInvoicePaid(invoice: Stripe.Invoice) {
       transaction_type: invoice.billing_reason === 'subscription_create' ? 'subscription' : 'overage',
       amount_cents: invoice.amount_paid,
       currency: invoice.currency.toUpperCase(),
-      stripe_payment_id: invoice.payment_intent as string || null,
+      stripe_payment_id: (invoice as any).payment_intent as string || null,
       stripe_invoice_id: invoice.id,
-      plan_type: invoice.lines.data[0]?.price?.metadata?.plan_type || 'unknown',
-      billing_period: invoice.lines.data[0]?.price?.recurring?.interval || 'monthly',
+      plan_type: (invoice.lines.data[0] as any)?.price?.metadata?.plan_type || 'unknown',
+      billing_period: (invoice.lines.data[0] as any)?.price?.recurring?.interval || 'monthly',
       description: `Invoice ${invoice.number}`,
       metadata: {
         invoice_number: invoice.number,

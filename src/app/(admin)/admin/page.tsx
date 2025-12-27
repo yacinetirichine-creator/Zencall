@@ -1,8 +1,8 @@
-import { createServerClient } from '@/lib/supabase/server';
+import { createClient } from '@/lib/supabase/server';
 import { formatCurrency, formatNumber } from '@/lib/utils';
 
 export default async function AdminDashboard() {
-  const supabase = createServerClient();
+  const supabase = await createClient();
   
   // Get dashboard metrics (30 days by default)
   const { data: metrics } = await supabase

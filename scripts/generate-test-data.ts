@@ -76,7 +76,7 @@ async function generateTestData() {
   // 2. Generate cost tracking (last 30 days)
   console.log('💸 Generating cost tracking...');
   
-  const costData = [];
+  const costData: any[] = [];
   const providers = [
     { name: 'vapi', type: 'vapi_call', unit: 'minutes', unitPrice: 250 },
     { name: 'twilio', type: 'twilio_call', unit: 'minutes', unitPrice: 150 },
