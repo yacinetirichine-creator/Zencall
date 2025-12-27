@@ -14,11 +14,12 @@ DECLARE
   i INTEGER;
   j INTEGER;
 BEGIN
-  -- Get or create a test user
-  SELECT id INTO v_test_user_id FROM auth.users LIMIT 1;
+  -- Get an existing user from auth.users
+  SELECT id INTO v_test_user_id FROM auth.users ORDER BY created_at DESC LIMIT 1;
   
+  -- If no user exists, raise an error with instructions
   IF v_test_user_id IS NULL THEN
-    v_test_user_id := '00000000-0000-0000-0000-000000000000';
+    RAISE EXCEPTION 'No users found in auth.users. Please create a user account first by registering on the platform, then re-run this script.';
   END IF;
   
   RAISE NOTICE 'Using test user: %', v_test_user_id;

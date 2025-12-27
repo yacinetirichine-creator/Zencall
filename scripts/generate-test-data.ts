@@ -24,13 +24,18 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 async function generateTestData() {
   console.log('🚀 Generating test data for admin system...\n');
   
-  // Get a test user (or use first available user)
-  const { data: users } = await supabase
-    .from('auth.users')
-    .select('id')
-    .limit(1);
+  // Get a real user from auth.users
+  const { data: users, error: userError } = await supabase.auth.admin.listUsers();
   
-  const testUserId = users?.[0]?.id || '00000000-0000-0000-0000-000000000000';
+  if (userError || !users || users.users.length === 0) {
+    console.error('❌ No users found in database.');
+    console.error('Please create a user account first by registering on the platform.');
+    console.error('Then re-run this script.\n');
+    process.exit(1);
+  }
+  
+  const testUserId = users.users[0].id;
+  console.log(`✅ Using test user: ${testUserId}\n`);
   
   // 1. Generate revenue transactions (last 30 days)
   console.log('💰 Generating revenue transactions...');

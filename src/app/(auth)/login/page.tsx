@@ -22,11 +22,19 @@ export default function LoginPage() {
     setError("");
     try {
       const supabase = createClient();
-      const { error } = await supabase.auth.signInWithPassword({ email, password });
-      if (error) throw error;
-      router.push("/dashboard");
-      router.refresh();
+      const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+      
+      if (error) {
+        console.error('Login error:', error);
+        throw error;
+      }
+      
+      console.log('Login successful:', data.user?.email);
+      
+      // Force reload to ensure cookies are set
+      window.location.href = "/dashboard";
     } catch (err: any) {
+      console.error('Login exception:', err);
       setError(err.message || t("auth.login.errorFallback"));
     } finally {
       setIsLoading(false);
