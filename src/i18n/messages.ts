@@ -32,6 +32,164 @@ export const messagesByLocale: Record<Locale, Messages> = {
       ctaDemo: "Écouter une démo",
       socialProof: "Déjà adopté par +500 entreprises",
       footerCopyright: "© {{year}} Zencall Inc.",
+      
+      // Avantages
+      advantages: {
+        title: "Pourquoi Zencall domine le marché",
+        subtitle: "La meilleure technologie au meilleur prix",
+        items: [
+          {
+            title: "IA Ultra-Réaliste",
+            description: "Voix indistinguables d'un humain grâce à VAPI.ai - Taux de satisfaction : 98%"
+          },
+          {
+            title: "Prix imbattable",
+            description: "Jusqu'à 70% moins cher que la concurrence (Aircall, Ringover) sans compromis"
+          },
+          {
+            title: "Disponibilité 24/7",
+            description: "Votre IA ne dort jamais, ne prend pas de pause, et gère un volume infini d'appels"
+          },
+          {
+            title: "ROI immédiat",
+            description: "Économisez le coût de 3 standardistes dès le 1er mois (env. 6000€/mois)"
+          },
+          {
+            title: "Déploiement en 5 min",
+            description: "Configurez votre assistant IA en quelques clics - Pas de matériel, pas d'installation"
+          },
+          {
+            title: "Intégrations natives",
+            description: "Google Calendar, CRM, SMS - Tout se synchronise automatiquement"
+          }
+        ]
+      },
+      
+      // Comparaison prix/performance
+      comparison: {
+        title: "Zencall vs. Concurrence",
+        subtitle: "Comparez par vous-même",
+        competitors: {
+          zencall: "Zencall",
+          aircall: "Aircall",
+          ringover: "Ringover",
+          traditional: "Standard téléphonique classique"
+        },
+        metrics: [
+          {
+            name: "Coût mensuel (500 min)",
+            zencall: "49€",
+            aircall: "150€",
+            ringover: "140€",
+            traditional: "~6000€ (3 standardistes)"
+          },
+          {
+            name: "Disponibilité",
+            zencall: "24/7",
+            aircall: "Horaires bureau",
+            ringover: "Horaires bureau",
+            traditional: "8h-18h (jours ouvrés)"
+          },
+          {
+            name: "Temps de réponse",
+            zencall: "< 2 secondes",
+            aircall: "Variable",
+            ringover: "Variable",
+            traditional: "30s - 5 min"
+          },
+          {
+            name: "Qualité IA",
+            zencall: "98% satisfaction",
+            aircall: "Pas d'IA conversationnelle",
+            ringover: "Pas d'IA conversationnelle",
+            traditional: "Variable"
+          },
+          {
+            name: "Prise de RDV auto",
+            zencall: "✓ Inclus",
+            aircall: "✗",
+            ringover: "✗",
+            traditional: "✗"
+          }
+        ]
+      },
+      
+      // Cas d'usage
+      useCases: {
+        title: "Qui utilise Zencall ?",
+        subtitle: "Des solutions concrètes pour chaque secteur",
+        cases: [
+          {
+            icon: "💼",
+            sector: "Cabinets médicaux",
+            problem: "Réceptionniste débordée, patients mécontents des délais",
+            solution: "L'IA prend les RDV 24/7, rappelle les confirmations, gère les annulations",
+            result: "Cabinet de 3 médecins : -80% temps administratif, +45% de RDV pris"
+          },
+          {
+            icon: "🏠",
+            sector: "Agences immobilières",
+            problem: "Agents sur le terrain, appels manqués = ventes perdues",
+            solution: "L'IA qualifie les prospects, prend les visites, envoie les dossiers par SMS",
+            result: "Agence à Lyon : +60% de visites programmées, 0 appel manqué"
+          },
+          {
+            icon: "🔧",
+            sector: "Artisans & Services",
+            problem: "Téléphone qui sonne pendant les interventions, devis perdus",
+            solution: "L'IA prend les demandes de devis, fixe les RDV, envoie les confirmations",
+            result: "Plombier à Paris : +40 devis/mois, +15k€ CA sans effort"
+          },
+          {
+            icon: "🏋️",
+            sector: "Salles de sport / Coaching",
+            problem: "Secrétariat coûteux, difficile de gérer les inscriptions",
+            solution: "L'IA inscrit les nouveaux, gère les abonnements, répond aux questions",
+            result: "Salle CrossFit : -2500€/mois de secrétariat, +30% d'inscriptions"
+          },
+          {
+            icon: "🍕",
+            sector: "Restaurants",
+            problem: "Téléphone saturé le soir, commandes perdues",
+            solution: "L'IA prend les réservations et commandes à emporter, gère les allergies",
+            result: "Pizzeria à Marseille : +25% commandes en soirée, 0 erreur"
+          },
+          {
+            icon: "⚖️",
+            sector: "Cabinets d'avocats",
+            problem: "Assistant juridique onéreux, confidentialité critique",
+            solution: "L'IA qualifie les dossiers, prend les consultations, 100% RGPD-conforme",
+            result: "Cabinet de 5 avocats : -70% coûts admin, +50% consultations"
+          }
+        ]
+      },
+      
+      // Section ROI
+      roi: {
+        title: "Retour sur investissement",
+        subtitle: "Calcul pour un cabinet médical moyen",
+        before: "Avant Zencall",
+        after: "Avec Zencall",
+        calculations: [
+          {
+            item: "Réceptionniste mi-temps",
+            before: "1500€/mois",
+            after: "0€"
+          },
+          {
+            item: "Appels manqués (10/jour)",
+            before: "~30 RDV perdus = 3000€/mois",
+            after: "0€"
+          },
+          {
+            item: "Logiciel Zencall",
+            before: "0€",
+            after: "49€/mois"
+          }
+        ],
+        savings: "Économie nette : 4451€/mois",
+        payback: "Retour sur investissement : immédiat"
+      }
     },
     pricing: {
       titleA: "Tarifs",
@@ -140,6 +298,164 @@ export const messagesByLocale: Record<Locale, Messages> = {
       ctaDemo: "Listen to a demo",
       socialProof: "Trusted by 500+ businesses",
       footerCopyright: "© {{year}} Zencall Inc.",
+      
+      // Advantages
+      advantages: {
+        title: "Why Zencall dominates the market",
+        subtitle: "Best technology at the best price",
+        items: [
+          {
+            title: "Ultra-Realistic AI",
+            description: "Voices indistinguishable from humans thanks to VAPI.ai - 98% satisfaction rate"
+          },
+          {
+            title: "Unbeatable price",
+            description: "Up to 70% cheaper than competitors (Aircall, Ringover) without compromise"
+          },
+          {
+            title: "24/7 Availability",
+            description: "Your AI never sleeps, never takes breaks, and handles unlimited call volume"
+          },
+          {
+            title: "Immediate ROI",
+            description: "Save the cost of 3 receptionists from month 1 (approx. €6000/month)"
+          },
+          {
+            title: "5-min deployment",
+            description: "Set up your AI assistant in a few clicks - No hardware, no installation"
+          },
+          {
+            title: "Native integrations",
+            description: "Google Calendar, CRM, SMS - Everything syncs automatically"
+          }
+        ]
+      },
+      
+      // Comparison
+      comparison: {
+        title: "Zencall vs. Competition",
+        subtitle: "Compare for yourself",
+        competitors: {
+          zencall: "Zencall",
+          aircall: "Aircall",
+          ringover: "Ringover",
+          traditional: "Traditional phone system"
+        },
+        metrics: [
+          {
+            name: "Monthly cost (500 min)",
+            zencall: "€49",
+            aircall: "€150",
+            ringover: "€140",
+            traditional: "~€6000 (3 receptionists)"
+          },
+          {
+            name: "Availability",
+            zencall: "24/7",
+            aircall: "Business hours",
+            ringover: "Business hours",
+            traditional: "8am-6pm (weekdays)"
+          },
+          {
+            name: "Response time",
+            zencall: "< 2 seconds",
+            aircall: "Variable",
+            ringover: "Variable",
+            traditional: "30s - 5 min"
+          },
+          {
+            name: "AI Quality",
+            zencall: "98% satisfaction",
+            aircall: "No conversational AI",
+            ringover: "No conversational AI",
+            traditional: "Variable"
+          },
+          {
+            name: "Auto appointment booking",
+            zencall: "✓ Included",
+            aircall: "✗",
+            ringover: "✗",
+            traditional: "✗"
+          }
+        ]
+      },
+      
+      // Use cases
+      useCases: {
+        title: "Who uses Zencall?",
+        subtitle: "Concrete solutions for every sector",
+        cases: [
+          {
+            icon: "💼",
+            sector: "Medical offices",
+            problem: "Overwhelmed receptionist, dissatisfied patients due to delays",
+            solution: "AI books appointments 24/7, sends reminders, manages cancellations",
+            result: "3-doctor practice: -80% admin time, +45% appointments booked"
+          },
+          {
+            icon: "🏠",
+            sector: "Real estate agencies",
+            problem: "Agents in the field, missed calls = lost sales",
+            solution: "AI qualifies prospects, books viewings, sends files via SMS",
+            result: "Lyon agency: +60% viewings scheduled, 0 missed calls"
+          },
+          {
+            icon: "🔧",
+            sector: "Contractors & Services",
+            problem: "Phone ringing during interventions, lost quotes",
+            solution: "AI takes quote requests, schedules appointments, sends confirmations",
+            result: "Paris plumber: +40 quotes/month, +€15k revenue effortlessly"
+          },
+          {
+            icon: "🏋️",
+            sector: "Gyms / Coaching",
+            problem: "Expensive secretariat, hard to manage registrations",
+            solution: "AI enrolls new members, manages subscriptions, answers questions",
+            result: "CrossFit gym: -€2500/month secretariat, +30% registrations"
+          },
+          {
+            icon: "🍕",
+            sector: "Restaurants",
+            problem: "Phone saturated at night, lost orders",
+            solution: "AI takes reservations and takeout orders, manages allergies",
+            result: "Marseille pizzeria: +25% evening orders, 0 errors"
+          },
+          {
+            icon: "⚖️",
+            sector: "Law firms",
+            problem: "Expensive legal assistant, critical confidentiality",
+            solution: "AI qualifies cases, books consultations, 100% GDPR-compliant",
+            result: "5-lawyer firm: -70% admin costs, +50% consultations"
+          }
+        ]
+      },
+      
+      // ROI
+      roi: {
+        title: "Return on Investment",
+        subtitle: "Calculation for an average medical practice",
+        before: "Before Zencall",
+        after: "With Zencall",
+        calculations: [
+          {
+            item: "Part-time receptionist",
+            before: "€1500/month",
+            after: "€0"
+          },
+          {
+            item: "Missed calls (10/day)",
+            before: "~30 lost appointments = €3000/month",
+            after: "€0"
+          },
+          {
+            item: "Zencall software",
+            before: "€0",
+            after: "€49/month"
+          }
+        ],
+        savings: "Net savings: €4451/month",
+        payback: "Return on investment: immediate"
+      }
     },
     pricing: {
       titleA: "Transparent",

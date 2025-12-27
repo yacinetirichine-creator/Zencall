@@ -7,6 +7,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Hero3D } from "@/components/landing/hero-3d";
 import { AudioIntro } from "@/components/landing/audio-intro";
 import { PricingSection } from "@/components/landing/pricing-section";
+import { AdvantagesSection } from "@/components/landing/advantages-section";
+import { ComparisonSection } from "@/components/landing/comparison-section";
+import { UseCasesSection } from "@/components/landing/use-cases-section";
+import { ROISection } from "@/components/landing/roi-section";
 import { LanguageSwitcher } from "@/components/layout/language-switcher";
 import { useI18n } from "@/i18n/provider";
 
@@ -115,6 +119,18 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Advantages Section */}
+      <AdvantagesSection />
+
+      {/* Comparison Section */}
+      <ComparisonSection />
+
+      {/* Use Cases Section */}
+      <UseCasesSection />
+
+      {/* ROI Section */}
+      <ROISection />
 
       {/* Pricing Section */}
       <div id="pricing">
